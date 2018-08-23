@@ -1,0 +1,5 @@
+<app-game-control (numberGenerated)='onNumberGenerated($event)'></app-game-control>
+<app-even [num]='num' *ngIf='num%2==0;else odd'></app-even>
+<ng-template #odd>
+  <app-odd [num]='num'></app-odd>
+</ng-template>
