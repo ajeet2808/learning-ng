@@ -1,55 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
+import { HeaderComponent } from './core/header/header.component';
 import { AssignmentComponent } from './assignment/assignment.component';
 import { GameControlComponent } from './assignment/game-control/game-control.component';
 import { OddComponent } from './assignment/odd/odd.component';
 import { EvenComponent } from './assignment/even/even.component';
-import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
-import { NoRecipeSelectedComponent } from './recipes/no-recipe-selected/no-recipe-selected.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { HttpModule } from '@angular/http';
-import { SignupComponent } from './auth/signup/signup.component';
-import { SigninComponent } from './auth/signin/signin.component';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { HomeComponent } from './core/home/home.component';
+import { AssignmentModule } from './assignment/assignment.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    AssignmentComponent,
-    GameControlComponent,
-    OddComponent,
-    EvenComponent,
-    DropdownDirective,
-    NoRecipeSelectedComponent,
-    RecipeEditComponent,
-    SignupComponent,
-    SigninComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    SharedModule,
+    AuthModule,
+    ShoppingListModule,
+    AppRoutingModule,
+    AssignmentModule,
+    CoreModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
