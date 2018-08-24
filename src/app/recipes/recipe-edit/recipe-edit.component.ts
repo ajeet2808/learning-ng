@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe.model';
@@ -76,5 +76,8 @@ export class RecipeEditComponent implements OnInit {
   }
   onDeleteIngredient(index: number) {
     (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
+  getControls(): AbstractControl[] {
+    return (<FormArray>this.recipeForm.get('ingredients')).controls;
   }
 }
