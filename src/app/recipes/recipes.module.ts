@@ -7,7 +7,6 @@ import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.compo
 import { NoRecipeSelectedComponent } from './no-recipe-selected/no-recipe-selected.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecipeRoutingModule } from './recipe-routing.module';
 

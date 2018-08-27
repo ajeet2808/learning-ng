@@ -9,7 +9,9 @@ import { Subject } from 'rxjs';
 export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
   recipesChanged = new Subject<Recipe[]>();
+
   constructor() { }
+
   private recipes: Recipe[] = [new Recipe('Paneer Tikka',
     'Paneer Tikka is a very delicious food item. This is used with chapati.',
     "http://foodpics.in/images/home-image-25-jul-2012.jpg",
