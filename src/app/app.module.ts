@@ -14,6 +14,9 @@ import { StoreModule } from '@ngrx/store';
 import { reducer } from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/store/auth.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,15 @@ import { AuthEffects } from './auth/store/auth.effects';
     FormsModule,
     HttpClientModule,
     SharedModule,
+    CoreModule,
     AuthModule,
     ShoppingListModule,
     AppRoutingModule,
     AssignmentModule,
-    CoreModule,
     StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects]),
+    StoreRouterConnectingModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   bootstrap: [AppComponent]
 })
