@@ -1,10 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { ShoppingListService } from '../../shopping-list/shopping-list.service';
-import { Ingredient } from '../../shared/ingredient.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { AuthService } from '../../auth/auth.service';
+import { Store } from '@ngrx/store';
+import * as shoppingList from '../../shopping-list/store/shopping-list.actions';
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -14,10 +14,9 @@ import { AuthService } from '../../auth/auth.service';
 export class RecipeDetailComponent implements OnInit {
   @Output("onRecipe") recipeLoaded = new EventEmitter<Recipe>();
   constructor(private recipeService: RecipeService,
-    private slService: ShoppingListService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthService) { }
+    private sotre: Store<fromApp.AppState>) { }
   recipe: Recipe;
   id: number;
   ngOnInit() {
@@ -29,14 +28,10 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   sendToShoppingList() {
-    this.recipe.ingredients.forEach((item: Ingredient) => {
-      this.slService.addIngredient(item);
-    })
+    this.sotre.dispatch(new shoppingList.AddIngredients(this.recipe.ingredients));
   }
   onDelete() {
-    if (this.authService.isAuthenticated()) {
-      this.recipeService.deleteRecipe(this.id);
-      this.router.navigate(['../'], { relativeTo: this.activatedRoute });
-    }
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
   }
 }

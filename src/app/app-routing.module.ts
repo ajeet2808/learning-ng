@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 import { AuthModule } from "./auth/auth.module";
-import { HomeComponent } from "./core/home/home.component";
 import { AuthGuardService } from "./auth/auth-guard.service";
 
 const appRoutes: Routes = [
