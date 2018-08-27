@@ -18,9 +18,7 @@ export class AuthGuardService implements CanActivate, CanLoad {
     }));
   }
 
-  //TODO: canLoad guard is not working with observable. Fix it.
   canLoad(route: Route): boolean | Observable<boolean> {
-    //return true;
     return this.store.select('auth').pipe(take(1), map((authState: fromAuth.State) => {
       console.log('canLoad:', authState.authenticated);
       return authState.authenticated;

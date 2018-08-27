@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataStorageService } from './data-storage.service';
 import { DropdownDirective } from './dropdown.directive';
 
 @NgModule({
@@ -8,9 +7,7 @@ import { DropdownDirective } from './dropdown.directive';
     CommonModule
   ],
   declarations: [DropdownDirective],
-  providers: [
-    DataStorageService
-  ],
+  providers: [],
   exports: [
     CommonModule,
     DropdownDirective
