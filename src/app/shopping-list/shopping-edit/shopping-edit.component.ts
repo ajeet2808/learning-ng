@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -19,6 +19,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   editMode = false;
   editedItemIndex: number;
   editedItem: Ingredient;
+  @Output() editStarted = new EventEmitter<Ingredient>();
   @ViewChild('shoppingForm') shoppingForm: NgForm;
   ngOnInit() {
     this.subscription = this.store.select('shoppingList').subscribe((data) => {
@@ -49,6 +50,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.shoppingForm.reset();
   }
   onClear() {
+    this.editStarted.emit(this.editedItem);
     this.editMode = false;
     this.shoppingForm.reset();
   }

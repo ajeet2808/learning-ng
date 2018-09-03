@@ -20,4 +20,7 @@ export class ShoppingListComponent implements OnInit {
   onEditItem(id: number) {
     this.store.dispatch(new StartEditIngredient(id));
   }
+  onEditStarted(event: any) {
+    console.log("editing item:", event);
+  }
 }
